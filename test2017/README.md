@@ -1,3 +1,3 @@
-# CLi SciSumm 2016
+# CLi SciSumm 2017
 
 Contains **10** research articles
