@@ -1,0 +1,130 @@
+1,0,A method is presented for segmenting text into subtopic areas.
+2,1,The proportion of related pairwise words is calculated between adjacent windows of text to determine their lexical similarity.
+3,2,The lexical cohesion relations of reiteration and collocation are used to identify related words.
+4,3,"These relations are automatically located using a combination of three linguistic features: word repetition, collocation and relation weights."
+5,4,This method is shown to successfully detect known subject changes in text and corresponds well to the segmentations placed by test subjects.
+6,5,Many examples of heterogeneous data can be found in daily life.
+7,6,"The Wall Street Journal archives, for example, consist of a series of articles about different subject areas."
+8,7,"Segmenting such data into distinct topics is useful for information retrieval, where only those segments relevant to a user's query can be retrieved."
+9,8,Text segmentation could also be used as a pre-processing step in automatic summarisation.
+10,9,Each segment could be summarised individually and then combined to provide an abstract for a document.
+11,10,Previous work on text segmentation has used term matching to identify clusters of related text.
+12,11,"Salton and Buckley (1992) and later, Hearst (1994) extracted related text pmtions by matching high frequency terms."
+13,12,"Yaari ( 1997) segmented text into a hierarchical structure, identifying sub-segments of larger segments."
+14,13,Ponte and Croft ( 1997) used word co-occurrences to expand the number of terms for matching.
+15,14,"Reynar ( 1994) compared all Lindsay J. Evett Department of Computing Nottingham Trent University Nottingham NGI 4BU, UK lje@doc.ntu.ac.uk words across a text rather than the more usual nearest neighbours."
+16,15,"A problem with using word repetition is that inappropriate matches can be made because of the lack of contextual information (Salton et al., 1994)."
+17,16,Another approach to text segmentation is the detection of semantically related words.
+18,17,"Hearst (1993) incorporated semantic information derived from WordNet but in later work reported that this information actually degraded word repetition results (Hearst, 1994)."
+19,18,"Related words have been located using spreading activation on a semantic network (Kozima, 1993), although only one text was segmented."
+20,19,Another approach extracted semantic information from Roget's Thesaurus (RT).
+21,20,"Lexical cohesion relations (Halliday and Hasan, 1976) between words were identified in RT and used to construct lexical chains of related words in five texts (Morris and Hirst, 1991 )."
+22,21,"It was reported that the lexical chains closely correlated to the intentional structure (Grosz and Sidner, 1986) of the texts, where the start and end of chains coincided with the intention ranges."
+23,22,"However, RT does not capture all types of lexical cohesion relations."
+24,23,"In previous work, it was found that collocation (a lexical cohesion relation) was under-represented in the thesaurus."
+25,24,"Furthermore, this process was not automated and relied on subjective decision making."
+26,25,"Following Morris and Hirst's work, a segmentation algorithm was developed based on identifying lexical cohesion relations across a text."
+27,26,"The proposed algorithm is fully automated, and a quantitative measure of the association between words is calculated."
+28,27,This algorithm utilises linguistic features additional to those captured in the thesaurus to identify the other types of lexical cohesion relations that can exist in text.
+29,28,1 Background Theory: Lexical Cohesion.
+30,29,Cohesion concerns how words in a text are related.
+31,30,The major work on cohesion in English was conducted by Halliday and Hasan (1976).
+32,31,An instance of cohesion between a pair of elements is referred to as a tie.
+33,32,"Ties can be anaphoric or cataphoric, and located at both the sentential and suprasentential level."
+34,33,Halliday and Hasan classified cohesion under two types: grammatical and lexical.
+35,34,Grammatical cohesion is expressed through the grammatical relations in text such as ellipsis and conjunction.
+36,35,Lexical cohesion is expressed through the vocabulary used in text and the semantic relations between those words.
+37,36,Identifying semantic relations in a text can be a useful indicator of its conceptual structure.
+38,37,"Lexical cohesion is divided into three classes: general noun, reiteration and collocation."
+39,38,"General noun's cohesive function is both grammatical and lexical, although Halliday and Hasan's analysis showed that this class plays a minor cohesive role."
+40,39,"Consequently, it was not further considered."
+41,40,"Reiteration is subdivided into four cohesive effects: word repetition (e.g. ascent and ascent), synonym (e.g. ascent and climb) which includes near-synonym and hyponym, superordinate (e.g. ascent and task) and general word (e.g. ascent and thing)."
+42,41,The effect of general word is difficult to automatically identify because no common referent exists between the general word and the word to which it refers.
+43,42,"A collocation is a predisposed combination of words, typically pairwise words, that tend to regularly co-occur (e.g. orange and peel)."
+44,43,All semantic relations not classified under the class of reiteration are attributed to the class of collocation.
+45,44,"To automatically detect lexical cohesion tics between pairwise words, three linguistic features were considered: word repetition, collocation and relation weights."
+46,45,The first two methods represent lexical cohesion relations.
+47,46,"Word repetition is a component of the lexical cohesion class of reiteration, and collocation is a lexical cohesion class in its entirety."
+48,47,"The remaining types of lexical cohesion considered, include synonym and superordinate (the cohesive effect of general word was not included)."
+49,48,"These types can be identified using relation weights (Jobbins and Evett, 1998)."
+50,49,Word repetition: Word repetition ties in lexical cohesion are identified by same word matches and matches on inflections derived from the same stem.
+51,50,"An inflected word was reduced to its stem by look­ up in a lexicon (Keenan and Evett, 1989) comprising inflection and stem word pair records (e.g. ""orange oranges"")."
+52,51,"Collocation: Collocations were extracted from a seven million word sample of the Longman English Language Corpus using the association ratio (Church and Hanks, 1990) and outputted to a lexicon."
+53,52,Collocations were automatically located in a text by looking up pairwise words in this lexicon.
+54,53,Figure 1 shows the record for the headword orange followed by its collocates.
+55,54,"For example, the pairwise words orange and peel form a collocation."
+56,55,orange free green lemon peel red state yellow Figure 1.
+57,56,Excerpt from the collocation lexicon.
+58,57,"Relation Weights: Relation weights quantify the amount of semantic relation between words based on the lexical organisation of RT (Jobbins and Evett, 1995)."
+59,58,"A thesaurus is a collection of synonym groups, indicating that synonym relations are captured, and the hierarchical structure of RT implies that superordinate relations are also captured."
+60,59,"An alphabetically-ordered index of RT was generated, referred to as the Thesaurus Lexicon (TLex)."
+61,60,Relation weights for pairwise words are calculated based on the satisfaction of one or more of four possible connections in TLex.
+62,61,The proposed segmentation algorithm compares adjacent windows of sentences and determines their lexical similarity.
+63,62,A window size of three sentences was found to produce the best results.
+64,63,"Multiple sentences were compared because calculating lexical similarity between words is too fine (Rotondo, 1984) and between individual sentences is unreliable (Salton and Buckley, 1991)."
+65,64,"Lexical similarity is calculated for each window comparison based on the proportion of related words, and is given as a normalised score."
+66,65,Word repetitions are identified between identical words and words derived from the same stem.
+67,66,troughs placed subject change linguistic feature points located average std.
+68,67,dev.
+69,68,(out of 42 poss.)
+70,69,word repetition 7.1 3.16 41 collocation (97.6%) word repetition 7.3 5.22 41 relation weights (97.6%) 41 Collocations are located by looking up word pairs in the collocation lexicon.
+71,70,Relation weights are word repetition 8.5 3.62 (97.6%) calculated between pairwise words according to their location in RT.
+72,71,The lexical similarity score indicates the amount of lexical cohesion demonstrated by two windows.
+73,72,Scores plotted on a graph show a series of peaks (high scores) and troughs (low scores).
+74,73,Low scores indicate a weak collocation 5.8 3.70 40 relation weights (95.2%) word repetition 40 collocation 6.4 4.72 (95.2%) relation weights 39 level of cohesion.
+75,74,"Hence, a trough signals a potential subject change and texts can be relation weights 7 4.23 (92.9%) segmented at these points."
+76,75,An investigation was conducted to determine whether the segmentation algorithm could reliably locate subject change in text.
+77,76,Method: Seven topical articles of between 250 to 450 words in length were extracted from the World Wide Web.
+78,77,A total of 42 texts for test data were generated by concatenating pairs of these articles.
+79,78,"Hence, each generated text consisted of two articles."
+80,79,The transition from the first article to the second represented a known subject change point.
+81,80,"Previous work has identified the breaks between concatenated texts to evaluate the performance of text segmentation algorithms (Reynar, 1994; Stairmand, 1997)."
+82,81,"For each text, the troughs placed by the segmentation algorithm were compared to the location of the known subject change point in that text."
+83,82,"An error margin of one sentence either side of this point, determined by empirical analysis, was allowed."
+84,83,Results: Table I gives the results for the comparison of the troughs placed by the segmentation algorithm to the known subject change points.
+85,84,collocation 6.3 3.83 35 (83.3%) Table 1.
+86,85,Comparison of segmentation algorithm using different linguistic features.
+87,86,Discussion: The segmentation algorithm using the linguistic features word repetition and collocation in combination achieved the best result.
+88,87,A total of 41 out of a possible 42 known subject change points were identified from the least number of troughs placed per text (7.I).
+89,88,"For the text where the known subject change point went undetected, a total of three troughs were placed at sentences 6, 11 and 18."
+90,89,"The subject change point occurred at sentence 13, just two sentences after a predicted subject change at sentence 11."
+91,90,"In this investigation, word repetition alone achieved better results than using either collocation or relation weights individually."
+92,91,"The combination of word repetition with another linguistic feature improved on its individual result, where less troughs were placed per text."
+93,92,The objective of the current investigation was to determine whether all troughs coincide with a subject change.
+94,93,The troughs placed by the algorithm were compared to the segmentations identified by test subjects for the same texts.
+95,94,Method: Twenty texts were randomly selected for test data each consisting of approximately 500 words.
+96,95,These texts were presented to seven test subjects who were instructed to identify the sentences at which a new subject area commenced.
+97,96,No restriction was placed on the number of subject changes that could be identified.
+98,97,"Segmentation points, indicating a change of subject, were determined by the agreement of three or more test subjects (Litman ami Passonneau, 1996)."
+99,98,Adjacent segmentation points were treated as one point because it is likely that they refer to the same subject change.
+100,99,The troughs placed by the segmentation algorithm were compared to the segmentation points identified by the test subjects.
+101,100,"In Experiment 1, the top five approaches investigated identified at least 40 out of 42 known subject change points."
+102,101,"Due to that success, these five approaches were applied in this experiment."
+103,102,"To evaluate the results, the information retrieval metrics precision and recall were used."
+104,103,"These metrics have tended to be adopted for the assessment of text segmentation algorithms, but they do not provide a scale of correctness (Beeferman et al., 1997)."
+105,104,"The degree to which a segmentation point was 'missed' by a trough, for instance, is not considered."
+106,105,Allowing an error margin provides some degree of flexibility.
+107,106,An error margin of two sentences either side of a segmentation point was used by Hearst (1993) and Reynar ( 1994) allowed three sentences.
+108,107,"In this investigation, an error margin of two sentences was considered."
+109,108,Results: Table 2 gives the mean values for the comparison of troughs placed by the segmentation algorithm to the segmentation points identified by the test subjects for all the texts.
+110,109,"Discussion: The segmentation algorithm usmg word repetition and relation weights in combination achieved mean precision and recall rates of 0.80 and 0.69, respectively."
+111,110,"For 9 out of the 20 texts segmented, all troughs were relevant."
+112,111,"Therefore, many of the troughs placed by the segmentation algorithm represented valid subject Table 2."
+113,112,Comparison of troughs to segmentation points placed by the test subjects.
+114,113,changes.
+115,114,Both word repetition in combination with collocation and all three features in combination also achieved a precision rate of 0.80 but attained a lower recall rate of 0.62.
+116,115,These results demonstrate that supplementing word repetition with other linguistic features can improve text segmentation.
+117,116,"As an example, a text segmentation algorithm developed by Hearst ( 1994) based on word repetition alone attained inferior precision and recall rates of 0.66 and 0.61."
+118,117,"In this investigation, recall rates tended to be lower than precision rates because the algorithm identified fewer segments (4.1 per text) than the test subjects (4.5)."
+119,118,Each text was only 500 words in length and was related to a specific subject area.
+120,119,These factors limited the degree of subject change that occurred.
+121,120,"Consequently, the test subjects tended to identify subject changes that were more subtle than the algorithm could detect."
+122,121,Conclusion The text segmentation algorithm developed used three linguistic features to automatically detect lexical cohesion relations across windows.
+123,122,The combination of features word repetition and relation weights produced the best precision and recall rates of 0.80 and 0.69.
+124,123,"When used in isolation, the performance of each feature was inferior to a combined approach."
+125,124,This fact provides evidence that different lexical relations are detected by each linguistic feature considered.
+126,125,Areas for improving the segmentation algorithm include incorporation of a threshold for troughs.
+127,126,"Currently, all troughs indicate a subject change, however, minor fluctuations in scores may be discounted."
+128,127,Future work with this algorithm should include application to longer documents.
+129,128,With trough thresholding the segments identified in longer documents could detect significant subject changes.
+130,129,"Having located the related segments in text, a method of determining the subject of each segment could be developed, for example, for information retrieval purposes."
