@@ -1,0 +1,235 @@
+0,0,Supersense Tagging of Unknown Nouns using Semantic Similarity
+1,1,The limited coverage of lexical-semantic resources is a significant problem for NLP systems which can be alleviated by automatically classifying the unknown words.
+2,2,Supersense tagging assigns unknown nouns one of 26 broad semantic categories used by lexicographers to organise their manual insertion into WORDNET.
+3,3,Ciaramita and Johnson (2003) present a tagger which uses synonym set glosses as annotated training examples.
+4,4,"We describe an unsupervised approach, based on vector-space similarity, which does not require annotated examples but significantly outperforms their tagger."
+5,5,We also demonstrate the use of an extremely large shallow-parsed corpus for calculating vector-space semantic similarity.
+6,6,"Lexical-semantic resources have been applied successful to a wide range of Natural Language Processing (NLP) problems ranging from collocation extraction (Pearce, 2001) and class-based smoothing (Clark and Weir, 2002), to text classification (Baker and McCallum, 1998) and question answering (Pasca and Harabagiu, 2001)."
+7,7,"In particular, WORDNET (Fellbaum, 1998) has significantly influenced research in NLP."
+8,8,"Unfortunately, these resource are extremely time- consuming and labour-intensive to manually develop and maintain, requiring considerable linguistic and domain expertise."
+9,9,"Lexicographers cannot possibly keep pace with language evolution: sense distinctions are continually made and merged, words are coined or become obsolete, and technical terms migrate into the vernacular."
+10,10,"Technical domains, such as medicine, require separate treatment since common words often take on special meanings, and a significant proportion of their vocabulary does not overlap with everyday vocabulary."
+11,11,Bur- gun and Bodenreider (2001) compared an alignment of WORDNET with the UMLS medical resource and found only a very small degree of overlap.
+12,12,"Also, lexical- semantic resources suffer from: bias towards concepts and senses from particular topics."
+13,13,"Some specialist topics are better covered in WORD- NET than others, e.g. dog has finer-grained distinctions than cat and worm although this does not reflect finer distinctions in reality; limited coverage of infrequent words and senses."
+14,14,Ciaramita and Johnson (2003) found that common nouns missing from WORDNET 1.6 occurred every 8 sentences in the BLLIP corpus.
+15,15,"By WORDNET 2.0, coverage has improved but the problem of keeping up with language evolution remains difficult."
+16,16,consistency when classifying similar words into categories.
+17,17,"For instance, the WORDNET lexicographer file for ionosphere (location) is different to exo- sphere and stratosphere (object), two other layers of the earth’s atmosphere."
+18,18,These problems demonstrate the need for automatic or semiautomatic methods for the creation and maintenance of lexical-semantic resources.
+19,19,"Broad semantic classification is currently used by lexicographers to or- ganise the manual insertion of words into WORDNET, and is an experimental precursor to automatically inserting words directly into the WORDNET hierarchy."
+20,20,"Ciaramita and Johnson (2003) call this supersense tagging and describe a multi-class perceptron tagger, which uses WORDNET’s hierarchical structure to create many annotated training instances from the synset glosses."
+21,21,This paper describes an unsupervised approach to supersense tagging that does not require annotated sentences.
+22,22,"Instead, we use vector-space similarity to retrieve a number of synonyms for each unknown common noun."
+23,23,The supersenses of these synonyms are then combined to determine the supersense.
+24,24,This approach significantly outperforms the multi-class perceptron on the same dataset based on WORDNET 1.6 and 1.7.1.
+25,25,"26 Proceedings of the 43rd Annual Meeting of the ACL, pages 26–33, Ann Arbor, June 2005."
+26,26,Qc 2005 Association for Computational Linguistics L E X -FI L E D E S C R I P T I O N act acts or actions animal animals artifact man-made objects attribute attributes of people and objects body body parts cognition cognitive processes and contents communication communicative processes and contents event natural events feeling feelings and emotions food foods and drinks group groupings of people or objects location spatial position motive goals object natural objects (not man-made) person people phenomenon natural phenomena plant plants possession possession and transfer of possession process natural processes quantity quantities and units of measure relation relations between people/things/ideas shape two and three dimensional shapes state stable states of affairs substance substances time time and temporal relations Table 1: 25 noun lexicographer files in WORDNET
+27,27,"There are 26 broad semantic classes employed by lexicographers in the initial phase of inserting words into the WORDNET hierarchy, called lexicographer files (lex- files)."
+28,28,"For the noun hierarchy, there are 25 lex-files and a file containing the top level nodes in the hierarchy called Tops."
+29,29,"Other syntactic classes are also organised using lex-files: 15 for verbs, 3 for adjectives and 1 for adverbs."
+30,30,Lex-files form a set of coarse-grained sense distinctions within WORDNET.
+31,31,"For example, company appears in the following lex-files in WORDNET 2.0: group, which covers company in the social, commercial and troupe fine-grained senses; and state, which covers companionship."
+32,32,The names and descriptions of the noun lex-files are shown in Table 1.
+33,33,"Some lex-files map directly to the top level nodes in the hierarchy, called unique beginners, while others are grouped together as hyponyms of a unique beginner (Fellbaum, 1998, page 30)."
+34,34,"For example, abstraction subsumes the lex-files attribute, quantity, relation, communication and time."
+35,35,Ciaramita and Johnson (2003) call the noun lex-file classes supersenses.
+36,36,There are 11 unique beginners in the WORDNET noun hierarchy which could also be used as supersenses.
+37,37,Ciaramita (2002) has produced a mini- WORDNET by manually reducing the WORDNET hierarchy to 106 broad categories.
+38,38,Ciaramita et al.
+39,39,(2003) describe how the lex-files can be used as root nodes in a two level hierarchy with the WORDNET synsets appear ing directly underneath.
+40,40,"Other alternative sets of supersenses can be created by an arbitrary cut through the WORDNET hierarchy near the top, or by using topics from a thesaurus such as Roget’s (Yarowsky, 1992)."
+41,41,"These topic distinctions are coarser-grained than WORDNET senses, which have been criticised for being too difficult to distinguish even for experts."
+42,42,Ciaramita and Johnson (2003) believe that the key sense distinctions are still maintained by supersenses.
+43,43,"They suggest that supersense tagging is similar to named entity recognition, which also has a very small set of categories with similar granularity (e.g. location and person) for labelling predominantly unseen terms."
+44,44,Supersense tagging can provide automated or semi- automated assistance to lexicographers adding words to the WORDNET hierarchy.
+45,45,"Once this task is solved successfully, it may be possible to insert words directly into the fine-grained distinctions of the hierarchy itself."
+46,46,"Clearly, this is the ultimate goal, to be able to insert new terms into lexical resources, extending the structure where necessary."
+47,47,"Supersense tagging is also interesting for many applications that use shallow semantics, e.g. information extraction and question answering."
+48,48,A considerable amount of research addresses structurally and statistically manipulating the hierarchy of WORD- NET and the construction of new wordnets using the concept structure from English.
+49,49,"For lexical FreeNet, Beefer- man (1998) adds over 350 000 collocation pairs (trigger pairs) extracted from a 160 million word corpus of broadcast news using mutual information."
+50,50,The co-occurrence window was 500 words which was designed to approximate average document length.
+51,51,Caraballo and Charniak (1999) have explored determining noun specificity from raw text.
+52,52,"They find that simple frequency counts are the most effective way of determining the parent-child ordering, achieving 83% accuracy over types of vehicle, food and occupation."
+53,53,The other measure they found to be successful was the entropy of the conditional distribution of surrounding words given the noun.
+54,54,Specificity ordering is a necessary step for building a noun hierarchy.
+55,55,"However, this approach clearly cannot build a hierarchy alone."
+56,56,"For instance, entity is less frequent than many concepts it subsumes."
+57,57,This suggests it will only be possible to add words to an existing abstract structure rather than create categories right up to the unique beginners.
+58,58,Hearst and Schu¨ tze (1993) flatten WORDNET into 726 categories using an algorithm which attempts to minimise the variance in category size.
+59,59,"These categories are used to label paragraphs with topics, effectively repeating Yarowsky’s (1992) experiments using the their categories rather than Roget’s thesaurus."
+60,60,"Schu¨ tze’s (1992) WordSpace system was used to add topical links, such as between ball, racquet and game (the tennis problem)."
+61,61,"Further, they also use the same vector-space techniques to label previously unseen words using the most common class assigned to the top 20 synonyms for that word."
+62,62,Widdows (2003) uses a similar technique to insert words into the WORDNET hierarchy.
+63,63,He first extracts synonyms for the unknown word using vector-space similarity measures based on Latent Semantic Analysis and then searches for a location in the hierarchy nearest to these synonyms.
+64,64,This same technique as is used in our approach to supersense tagging.
+65,65,"Ciaramita and Johnson (2003) implement a super- sense tagger based on the multi-class perceptron classifier (Crammer and Singer, 2001), which uses the standard collocation, spelling and syntactic features common in WSD and named entity recognition systems."
+66,66,Their insight was to use the WORDNET glosses as annotated training data and massively increase the number of training instances using the noun hierarchy.
+67,67,They developed an efficient algorithm for estimating the model over hierarchical training data.
+68,68,Ciaramita and Johnson (2003) propose a very natural evaluation for supersense tagging: inserting the extra common nouns that have been added to a new version of WORDNET.
+69,69,They use the common nouns that have been added to WORDNET 1.7.1 since WORDNET 1.6 and compare this evaluation with a standard cross-validation approach that uses a small percentage of the words from their WORDNET 1.6 training set for evaluation.
+70,70,"Their results suggest that the WORDNET 1.7.1 test set is significantly harder because of the large number of abstract category nouns, e.g. communication and cognition, that appear in the 1.7.1 data, which are difficult to classify."
+71,71,Our evaluation will use exactly the same test sets as Ciaramita and Johnson (2003).
+72,72,"The WORDNET 1.7.1 test set consists of 744 previously unseen nouns, the majority of which (over 90%) have only one sense."
+73,73,The WORD- NET 1.6 test set consists of several cross-validation sets of 755 nouns randomly selected from the BLLIP training set used by Ciaramita and Johnson (2003).
+74,74,They have kindly supplied us with the WORDNET 1.7.1 test set and one cross-validation run of the WORDNET 1.6 test set.
+75,75,Our development experiments are performed on the WORDNET 1.6 test set with one final run on the WORD- NET 1.7.1 test set.
+76,76,Some examples from the test sets are given in Table 2 with their supersenses.
+77,77,"We have developed a 2 billion word corpus, shallow- parsed with a statistical NLP pipeline, which is by far the Table 2: Example nouns and their supersenses largest NLP processed corpus described in published re search."
+78,78,"The corpus consists of the British National Corpus (BNC), the Reuters Corpus Volume 1 (RCV1), and most of the Linguistic Data Consortium’s news text collected since 1987: Continuous Speech Recognition III (CSRIII); North American News Text Corpus (NANTC); the NANTC Supplement (NANTS); and the ACQUAINT Corpus."
+79,79,The components and their sizes including punctuation are given in Table 3.
+80,80,The LDC has recently released the English Gigaword corpus which includes most of the corpora listed above.
+81,81,C O R P U S D O C S . S E N T S . WO R D S B N C 4 1 2 4 6 . 2 M 1 1 4 M R C V1 8 0 6 7 9 1 8 . 1 M 2 0 7 M C S R -I I I 4 9 1 3 4 9 9 . 3 M 2 2 6 M NA N T C 9 3 0 3 6 7 2 3.
+82,82,2 M 5 5 9 M NA N T S 9 4 2 1 6 7 2 5.
+83,83,2 M 5 0 7 M AC QU A I N T 1 03 3 46 1 2 1.
+84,84,"3 M 4 9 1 M Table 3: 2 billion word corpus statistics We have tokenized the text using the Grok OpenNLP tokenizer (Morton, 2002) and split the sentences using MXTerminator (Reynar and Ratnaparkhi, 1997)."
+85,85,"Any sentences less than 3 words or more than 100 words long were rejected, along with sentences containing more than 5 numbers or more than 4 brackets, to reduce noise."
+86,86,The rest of the pipeline is described in the next section.
+87,87,Similarity Vector-space models of similarity are based on the distributional hypothesis that similar words appear in similar contexts.
+88,88,This hypothesis suggests that semantic similarity can be measured by comparing the contexts each word appears in.
+89,89,In vector-space models each headword is represented by a vector of frequency counts recording the contexts that it appears in.
+90,90,The key parameters are the context extraction method and the similarity measure used to compare context vectors.
+91,91,Our approach to vector-space similarity is based on the SEXTANT system described in Grefenstette (1994).
+92,92,Curran and Moens (2002b) compared several context extraction methods and found that the shallow pipeline and grammatical relation extraction used in SEXTANT was both extremely fast and produced high-quality results.
+93,93,"SEXTANT extracts relation tuples (w, r, wt ) for each noun, where w is the headword, r is the relation type and wt is the other word."
+94,94,The efficiency of the SEXTANT approach makes the extraction of contextual information from over 2 billion words of raw text feasible.
+95,95,We describe the shallow pipeline in detail below.
+96,96,"Curran and Moens (2002a) compared several different similarity measures and found that Grefenstette’s weighted JACCARD measure performed the best: R E L AT I O N D E S C R I P T I O N adj noun–adjectival modifier relation dobj verb–direct object relation iobj verb–indirect object relation nn noun–noun modifier relation nnprep noun–prepositional head relation subj verb–subject relation Table 4: Grammatical relations from SEXTANT against the CELEX lexical database (Minnen et al., 2001) – and is very efficient, analysing over 80 000 words per second."
+97,97,"morpha often maintains sense distinctions between singular and plural nouns; for instance: spectacles is not reduced to spectacle, but fails to do so in other cases: glasses is converted to glass."
+98,98,"This inconsis L min(wgt(w1 , ∗r , ∗wI ), wgt(w2 , ∗r , ∗wI )) L max(wgt(w1 , ∗r , ∗wI ), wgt(w2 , ∗r , ∗wI )) (1) tency is problematic when using morphological analysis to smooth vector-space models."
+99,99,"However, morphological smoothing still produces better results in practice."
+100,100,"where wgt(w, r, wt ) is the weight function for relation (w, r, wt )."
+101,101,"Curran and Moens (2002a) introduced the TTEST weight function, which is used in collocation extraction."
+102,102,"Here, the t-test compares the joint and product probability distributions of the headword and context: 6.3 Grammatical Relation Extraction."
+103,103,"After the raw text has been POS tagged and chunked, the grammatical relation extraction algorithm is run over the chunks."
+104,104,"This consists of five passes over each sentence that first identify noun and verb phrase heads and p(w, r, wt ) − p(∗, r, wt )p(w, ∗, ∗) p(∗, r, wt )p(w, ∗, ∗) (2) then collect grammatical relations between each common noun and its modifiers and verbs."
+105,105,A global list of grammatical relations generated by each pass is maintained where ∗ indicates a global sum over that element of the relation tuple.
+106,106,"JACCARD and TTEST produced better quality synonyms than existing measures in the literature, so we use Curran and Moen’s configuration for our super- sense tagging experiments."
+107,107,6.1 Part of Speech Tagging and Chunking.
+108,108,"Our implementation of SEXTANT uses a maximum entropy POS tagger designed to be very efficient, tagging at around 100 000 words per second (Curran and Clark, 2003), trained on the entire Penn Treebank (Marcus et al., 1994)."
+109,109,"The only similar performing tool is the Trigrams ‘n’ Tags tagger (Brants, 2000) which uses a much simpler statistical model."
+110,110,Our implementation uses a maximum entropy chunker which has similar feature types to Koeling (2000) and is also trained on chunks extracted from the entire Penn Treebank using the CoNLL 2000 script.
+111,111,"Since the Penn Treebank separates PPs and conjunctions from NPs, they are concatenated to match Grefenstette’s table-based results, i.e. the SEXTANT always prefers noun attachment."
+112,112,6.2 Morphological Analysis.
+113,113,"Our implementation uses morpha, the Sussex morphological analyser (Minnen et al., 2001), which is implemented using lex grammars for both affix splitting and generation."
+114,114,morpha has wide coverage – nearly 100% across the passes.
+115,115,The global list is used to determine if a word is already attached.
+116,116,Once all five passes have been completed this association list contains all of the noun- modifier/verb pairs which have been extracted from the sentence.
+117,117,The types of grammatical relation extracted by SEXTANT are shown in Table 4.
+118,118,"For relations between nouns (nn and nnprep), we also create inverse relations (wt , rt , w) representing the fact that wt can modify w. The 5 passes are described below."
+119,119,"Pass 1: Noun Pre-modifiers This pass scans NPs, left to right, creating adjectival (adj) and nominal (nn) pre-modifier grammatical relations (GRs) with every noun to the pre-modifier’s right, up to a preposition or the phrase end."
+120,120,This corresponds to assuming right-branching noun compounds.
+121,121,Within each NP only the NP and PP heads remain unattached.
+122,122,"Pass 2: Noun Post-modifiers This pass scans NPs, right to left, creating post-modifier GRs between the unattached heads of NPs and PPs."
+123,123,"If a preposition is encountered between the noun heads, a prepositional noun (nnprep) GR is created, otherwise an appositional noun (nn) GR is created."
+124,124,This corresponds to assuming right-branching PP attachment.
+125,125,After this phrase only the NP head remains unattached.
+126,126,Tense Determination The rightmost verb in each VP is considered the head.
+127,127,A VP is initially categorised as active.
+128,128,If the head verb is a form of be then the VP becomes attributive.
+129,129,"Otherwise, the algorithm scans the VP from right to left: if an auxiliary verb form of be is encountered the VP becomes passive; if a progressive verb (except being) is encountered the VP becomes active."
+130,130,Only the noun heads on either side of VPs remain unattached.
+131,131,The remaining three passes attach these to the verb heads as either subjects or objects depending on the voice of the VP.
+132,132,"Pass 3: Verb Pre-Attachment This pass scans sentences, right to left, associating the first NP head to the left of the VP with its head."
+133,133,"If the VP is active, a subject (subj) relation is created; otherwise, a direct object (dobj) relation is created."
+134,134,"For example, antigen is the subject of represent."
+135,135,"Pass 4: Verb Post-Attachment This pass scans sentences, left to right, associating the first NP or PP head to the right of the VP with its head."
+136,136,If the VP was classed as active and the phrase is an NP then a direct object (dobj) relation is created.
+137,137,If the VP was classed as passive and the phrase is an NP then a subject (subj) relation is created.
+138,138,If the following phrase is a PP then an indirect object (iobj) relation is created.
+139,139,The interaction between the head verb and the preposition determine whether the noun is an indirect object of a ditransitive verb or alternatively the head of a PP that is modifying the verb.
+140,140,"However, SEXTANT always attaches the PP to the previous phrase."
+141,141,Pass 5: Verb Progressive Participles The final step of the process is to attach progressive verbs to subjects and objects (without concern for whether they are already attached).
+142,142,"Progressive verbs can function as nouns, verbs and adjectives and once again a na¨ıve approximation to the correct attachment is made."
+143,143,Any progressive verb which appears after a determiner or quantifier is considered a noun.
+144,144,"Otherwise, it is a verb and passes 3 and 4 are repeated to attach subjects and objects."
+145,145,"Finally, SEXTANT collapses the nn, nnprep and adj relations together into a single broad noun-modifier grammatical relation."
+146,146,Grefenstette (1994) claims this extractor has a grammatical relation accuracy of 75% after manu ally checking 60 sentences.
+147,147,"Our approach uses voting across the known supersenses of automatically extracted synonyms, to select a super- sense for the unknown nouns."
+148,148,This technique is similar to Hearst and Schu¨ tze (1993) and Widdows (2003).
+149,149,"However, sometimes the unknown noun does not appear in our 2 billion word corpus, or at least does not appear frequently enough to provide sufficient contextual information to extract reliable synonyms."
+150,150,"In these cases, our SUFFIX EXAMPLE SUPERSENSEness remoteness attribute -tion, -ment annulment act -ist, -man statesman person -ing, -ion bowling act -ity viscosity attribute -ics, -ism electronics cognition -ene, -ane, -ine arsine substance -er, -or, -ic, -ee, -an mariner person -gy entomology cognition Table 5: Hand-coded rules for supersense guessing fall-back method is a simple hand-coded classifier which examines the unknown noun and makes a guess based on simple morphological analysis of the suffix."
+151,151,These rules were created by inspecting the suffixes of rare nouns in WORDNET 1.6.
+152,152,The supersense guessing rules are given in Table 5.
+153,153,"If none of the rules match, then the default supersense artifact is assigned."
+154,154,The problem now becomes how to convert the ranked list of extracted synonyms for each unknown noun into a single supersense selection.
+155,155,Each extracted synonym votes for its one or more supersenses that appear in WORDNET 1.6.
+156,156,There are many parameters to consider: • how many extracted synonyms to use; • how to weight each synonym’s vote; • whether unreliable synonyms should be filtered out; • how to deal with polysemous synonyms.
+157,157,The experiments described below consider a range of options for these parameters.
+158,158,"In fact, these experiments are so quick to run we have been able to exhaustively test many combinations of these parameters."
+159,159,We have experimented with up to 200 voting extracted synonyms.
+160,160,There are several ways to weight each synonym’s contribution.
+161,161,The simplest approach would be to give each synonym the same weight.
+162,162,Another approach is to use the scores returned by the similarity system.
+163,163,"Alternatively, the weights can use the ranking of the extracted synonyms."
+164,164,Again these options have been considered below.
+165,165,"A related question is whether to use all of the extracted synonyms, or perhaps filter out synonyms for which a small amount of contextual information has been extracted, and so might be unreliable."
+166,166,The final issue is how to deal with polysemy.
+167,167,Does every supersense of each extracted synonym get the whole weight of that synonym or is it distributed evenly between the supersenses like Resnik (1995)?
+168,168,Another alternative is to only consider unambiguous synonyms with a single supersense in WORDNET.
+169,169,"A disadvantage of this similarity approach is that it requires full synonym extraction, which compares the unknown word against a large number of words when, in S Y S T E M W N 1.6 W N 1.7 .1 Cia ra mit a an d Joh nso n bas eli ne 2 1 % 2 8 % Cia ra mit a an d Joh nso n per cep tro n 5 3 % 5 3 % Si mil arit y bas ed res ult s 6 8 % 6 3 % Table 6: Summary of supersense tagging accuracies fact, we want to calculate the similarity to a small number of supersenses."
+170,170,"This inefficiency could be reduced significantly if we consider only very high frequency words, but even this is still expensive."
+171,171,We have used the WORDNET 1.6 test set to experiment with different parameter settings and have kept the WORDNET 1.7.1 test set as a final comparison of best results with Ciaramita and Johnson (2003).
+172,172,The experiments were performed by considering all possible configurations of the parameters described above.
+173,173,The following voting options were considered for each supersense of each extracted synonym: the initial voting weight for a supersense could either be a constant (IDENTITY) or the similarity score (SCORE) of the synonym.
+174,174,The initial weight could then be divided by the number of supersenses to share out the weight (SHARED).
+175,175,The weight could also be divided by the rank (RANK) to penalise supersenses further down the list.
+176,176,"The best performance on the 1.6 test set was achieved with the SCORE voting, without sharing or ranking penalties."
+177,177,The extracted synonyms are filtered before contributing to the vote with their supersense(s).
+178,178,This filtering involves checking that the synonym’s frequency and number of contexts are large enough to ensure it is reliable.
+179,179,We have experimented with a wide range of cutoffs and the best performance on the 1.6 test set was achieved using a minimum cutoff of 5 for the synonym’s frequency and the number of contexts it appears in.
+180,180,The next question is how many synonyms are considered.
+181,181,"We considered using just the nearest unambiguous synonym, and the top 5, 10, 20, 50, 100 and 200 synonyms."
+182,182,All of the top performing configurations used 50 synonyms.
+183,183,"We have also experimented with filtering out highly polysemous nouns by eliminating words with two, three or more synonyms."
+184,184,"However, such a filter turned out to make little difference."
+185,185,"Finally, we need to decide when to use the similarity measure and when to fall-back to the guessing rules."
+186,186,This is determined by looking at the frequency and number of attributes for the unknown word.
+187,187,"Not surprisingly, the similarity system works better than the guessing rules if it has any information at all."
+188,188,The results are summarised in Table 6.
+189,189,The accuracy of the best-performing configurations was 68% on the Table 7: Breakdown of results by supersense WORDNET 1.6 test set with several other parameter combinations described above performing nearly as well.
+190,190,"On the previously unused WORDNET 1.7.1 test set, our accuracy is 63% using the best system on the WORDNET 1.6 test set."
+191,191,"By optimising the parameters on the 1.7.1 test set we can increase that to 64%, indicating that we have not excessively over-tuned on the 1.6 test set."
+192,192,Our results significantly outperform Ciaramita and Johnson (2003) on both test sets even though our system is unsupervised.
+193,193,The large difference between our 1.6 and 1.7.1 test set accuracy demonstrates that the 1.7.1 set is much harder.
+194,194,Table 7 shows the breakdown in performance for each supersense.
+195,195,"The columns show the number of instances of each supersense with the precision, recall and f-score measures as percentages."
+196,196,"The most frequent supersenses in both test sets were person, attribute and act."
+197,197,"Of the frequent categories, person is the easiest supersense to get correct in both the 1.6 and 1.7.1 test sets, followed by food, artifact and substance."
+198,198,"This is not surprising since these concrete words tend to have very fewer other senses, well constrained contexts and a relatively high frequency."
+199,199,These factors are conducive for extracting reliable synonyms.
+200,200,"These results also support Ciaramita and Johnson’s view that abstract concepts like communication, cognition and state are much harder."
+201,201,"We would expect the location supersense to perform well since it is quite concrete, but unfortunately our synonym extraction system does not incorporate proper nouns, so many of these words were classified using the hand-built classifier."
+202,202,"Also, in the data from Ciaramita and Johnson all of the words are in lower case, so no sensible guessing rules could help."
+203,203,An alternative approach worth exploring is to create context vectors for the supersense categories themselves and compare these against the words.
+204,204,This has the advantage of producing a much smaller number of vectors to compare against.
+205,205,"In the current system, we must compare a word against the entire vocabulary (over 500 000 headwords), which is much less efficient than a comparison against only 26 supersense context vectors."
+206,206,The question now becomes how to construct vectors of supersenses.
+207,207,The most obvious solution is to sum the context vectors across the words which have each supersense.
+208,208,"However, our early experiments suggest that this produces extremely large vectors which do not match well against the much smaller vectors of each unseen word."
+209,209,"Also, the same questions arise in the construction of these vectors."
+210,210,How are words with multiple supersenses handled?
+211,211,Our preliminary experiments suggest that only combining the vectors for unambiguous words produces the best results.
+212,212,One solution would be to take the intersection between vectors across words for each supersense (i.e. to find the common contexts that these words appear in).
+213,213,"However, given the sparseness of the data this may not leave very large context vectors."
+214,214,"A final solution would be to consider a large set of the canonical attributes (Curran and Moens, 2002a) to represent each supersense."
+215,215,Canonical attributes summarise the key contexts for each headword and are used to improve the efficiency of the similarity comparisons.
+216,216,There are a number of problems our system does not currently handle.
+217,217,"Firstly, we do not include proper names in our similarity system which means that location entities can be very difficult to identify correctly (as the results demonstrate)."
+218,218,"Further, our similarity system does not currently incorporate multi-word terms."
+219,219,We overcome this by using the synonyms of the last word in the multi-word term.
+220,220,"However, there are 174 multi-word terms (23%) in the WORDNET 1.7.1 test set which we could probably tag more accurately with synonyms for the whole multi-word term."
+221,221,"Finally, we plan to implement a supervised machine learner to replace the fall- back method, which currently has an accuracy of 37% on the WORDNET 1.7.1 test set."
+222,222,"We intend to extend our experiments beyond the Ciaramita and Johnson (2003) set to include previous and more recent versions of WORDNET to compare their difficulty, and also perform experiments over a range of corpus sizes to determine the impact of corpus size on the quality of results."
+223,223,We would like to move onto the more difficult task of insertion into the hierarchy itself and compare against the initial work by Widdows (2003) using latent semantic analysis.
+224,224,Here the issue of how to combine vectors is even more interesting since there is the additional structure of the WORDNET inheritance hierarchy and the small synonym sets that can be used for more fine-grained combination of vectors.
+225,225,Our application of semantic similarity to supersense tagging follows earlier work by Hearst and Schu¨ tze (1993) and Widdows (2003).
+226,226,To classify a previously unseen common noun our approach extracts synonyms which vote using their supersenses in WORDNET 1.6.
+227,227,"We have experimented with several parameters finding that the best configuration uses 50 extracted synonyms, filtered by frequency and number of contexts to increase their reliability."
+228,228,Each synonym votes for each of its supersenses from WORDNET 1.6 using the similarity score from our synonym extractor.
+229,229,Using this approach we have significantly outperformed the supervised multi-class perceptron Ciaramita and Johnson (2003).
+230,230,This paper also demonstrates the use of a very efficient shallow NLP pipeline to process a massive corpus.
+231,231,Such a corpus is needed to acquire reliable contextual information for the often very rare nouns we are attempting to supersense tag.
+232,232,This application of semantic similarity demonstrates that an unsupervised methods can outperform supervised methods for some NLP tasks if enough data is available.
+233,233,"We would like to thank Massi Ciaramita for supplying his original data for these experiments and answering our queries, and to Stephen Clark and the anonymous reviewers for their helpful feedback and corrections."
+234,234,"This work has been supported by a Commonwealth scholarship, Sydney University Travelling Scholarship and Australian Research Council Discovery Project DP0453131."
