@@ -1,2 +1,3 @@
-# NESSA
-Neural Extractive Summarization on Scientific Articles
+# Neural Extractive Summarization on Scientific Articles (NESSA)
+
+
