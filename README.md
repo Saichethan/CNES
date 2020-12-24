@@ -16,3 +16,7 @@ The extractive summaries are based on the TalkSumm (Lev et al. 2019) dataset. Th
  
 * **CLi SciSumm 2016**
 * **CLi SciSumm 2017**
+* **SciSummNet 2019**
+
+### Todo
+Complete code of CNES wil be uploaded soon...!!!
